@@ -3,7 +3,7 @@ MAINTAINER Reittiopas version: 0.1
 ENV INSTALL_DIR="/opt/nginx"
 RUN mkdir -p $INSTALL_DIR /opt/nginx/www /opt/nginx/cache /opt/nginx/temp-cache /opt/nginx/cache/temp /var/cache/nginx/client_temp /var/cache/nginx/fastcgi_temp/ /var/cache/nginx/uwsgi_temp /var/cache/nginx/scgi_temp
 
-ADD index.html /opt/nginx/www
+ADD index.html /opt/nginx/www/
 ADD nginx.conf /etc/nginx/nginx.conf
 ADD common.conf /etc/nginx/common.conf
 
