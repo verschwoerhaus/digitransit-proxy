@@ -1,4 +1,5 @@
 #!/bin/bash
+set -o errexit -o nounset -o xtrace
 ORG=hsldevcom
 DOCKER_IMAGE=digitransit-proxy
 
