@@ -6,8 +6,7 @@ RUN mkdir -p $INSTALL_DIR /opt/nginx/www /opt/nginx/cache /opt/nginx/geocache /o
 ADD index.html /opt/nginx/www/
 ADD nginx.conf /etc/nginx/nginx.conf
 ADD common.conf /etc/nginx/common.conf
-ADD legacy-redirects.
-conf /etc/nginx/legacy-redirects.conf
+ADD legacy-redirects.conf /etc/nginx/legacy-redirects.conf
 
 RUN rm /var/log/nginx/* && chmod -R a+rwX ${INSTALL_DIR} /etc/nginx/ /var/log/nginx/ /var/cache/nginx/ /var/run/
 USER 9999
