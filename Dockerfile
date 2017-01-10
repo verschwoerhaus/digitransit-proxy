@@ -9,9 +9,11 @@ ADD common.conf /etc/nginx/common.conf
 ADD legacy-redirects.conf /etc/nginx/legacy-redirects.conf
 
 RUN rm /var/log/nginx/* && chmod -R a+rwX ${INSTALL_DIR} /etc/nginx/ /var/log/nginx/ /var/cache/nginx/ /var/run/
-USER 9999
+#USER 9999
 
 WORKDIR /etc/nginx
 EXPOSE 8080
 
-CMD ["nginx"]
+ADD run.sh /usr/local/bin/
+
+CMD ["/usr/local/bin/run.sh"]
