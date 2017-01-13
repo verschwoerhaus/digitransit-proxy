@@ -65,7 +65,7 @@ http {
       rewrite ^(.*)$ https://$server_name$1 permanent;
     }
 
-    # Add HTTP Strict Transport Security for good measure.
+  # Add HTTP Strict Transport Security for good measure.
     add_header Strict-Transport-Security "max-age=31536000; includeSubDomains;";
 
     location / {
@@ -96,14 +96,14 @@ http {
   server {
     server_name dev.digitransit.fi beta.digitransit.fi beta.matka.fi;
     listen 8080;
-
+	
     include legacy-redirects.conf;
 
     if ($http_x_forwarded_proto != "https") {
       rewrite ^(.*)$ https://$server_name$1 permanent;
     }
 
-    # Add HTTP Strict Transport Security for good measure.
+  # Add HTTP Strict Transport Security for good measure.
     add_header Strict-Transport-Security "max-age=31536000; includeSubDomains;";
 
     location / {
@@ -124,7 +124,7 @@ http {
       rewrite ^(.*)$ https://$server_name$1 permanent;
     }
 
-    # Add HTTP Strict Transport Security for good measure.
+  # Add HTTP Strict Transport Security for good measure.
     add_header Strict-Transport-Security "max-age=31536000; includeSubDomains;";
 
 
