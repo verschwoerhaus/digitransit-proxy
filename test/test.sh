@@ -22,7 +22,7 @@ echo starting echo server...
 node server.js &
 PID=$!
 
-./node_modules/.bin/mocha
+npm test
 STATUS=$?
 
 echo stopping test server
