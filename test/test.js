@@ -49,7 +49,25 @@ function testProxying(host, path, proxyTo, secure) {
   });
 }
 
+function testRedirect(host, path, expectedUrl) {
+  it('http request to ' + host + path + ' should redirect to ' + expectedUrl, function(done) {
+    get(host,path).end((err,res)=>{
+      expect(err.status).to.be.equal(301);
+      expect(err.response.header.location).to.be.equal(expectedUrl);
+      done();
+    });
+  });
+}
+
 describe('api.digitransit.fi', function() {
+
+  it('https should not redirect', function(done) {
+    httpsGet('api.digitransit.fi','/geocoding/v1/').end((err,res)=>{
+      expect(err).to.be.null;
+      done();
+    });
+  });
+
   it('/ should contain static content', function(done) {
     get('api.digitransit.fi','/').end((err,res)=>{
       expect(err).to.be.null;
@@ -61,16 +79,23 @@ describe('api.digitransit.fi', function() {
 
   testProxying('api.digitransit.fi','/geocoding/v1/','pelias-api:8080');
   testProxying('api.digitransit.fi','/realtime/siri2gtfsrt/v1/','siri2gtfsrt:8080');
+  testProxying('api.digitransit.fi','/realtime/trip-updates/v1/','siri2gtfsrt:8080');
+  testProxying('api.digitransit.fi','/realtime/hslalert/v1/','hslalert:8080');
+  testProxying('api.digitransit.fi','/realtime/service-alerts/v1/','hslalert:8080');
+  testProxying('api.digitransit.fi','/realtime/navigator-server/v1/','navigator-server:8080');
+  testProxying('api.digitransit.fi','/realtime/vehicle-positions/v1/','navigator-server:8080');
+  testProxying('api.digitransit.fi','/realtime/mqtt-cache/v1/','navigator-server:8080');
+  testProxying('api.digitransit.fi','/realtime/raildigitraffic2gtfsrt/v1/','raildigitraffic2gtfsrt:8080');
+  testProxying('api.digitransit.fi','/map/v1/','hsl-map-server:8080');
+  testProxying('api.digitransit.fi','/routing/v1/routers/finland','opentripplanner-finland:8080');
+  testProxying('api.digitransit.fi','/routing/v1/routers/hsl','opentripplanner-hsl:8080');
+  testProxying('api.digitransit.fi','/routing/v1/routers/waltti','opentripplanner-waltti:8080');
+  testProxying('api.digitransit.fi','/routing-data/v1/','opentripplanner-data-con:8080');
 });
 
 describe('hsl ui', function() {
-  it('http should redirect to https', function(done) {
-    get('beta.digitransit.fi','/kissa').end((err,res)=>{
-      expect(err.status).to.be.equal(301);
-      expect(err.response.header.location).to.be.equal('https://beta.digitransit.fi/kissa');
-      done();
-    });
-  });
+  testRedirect('beta.reittiopas.fi','/kissa','https://beta.reittiopas.fi/kissa');
+  testRedirect('dev.reittiopas.fi','/kissa','https://dev.reittiopas.fi/kissa');
 
   it('https should not redirect', function(done) {
     httpsGet('beta.digitransit.fi','/kissa').end((err,res)=>{
@@ -84,13 +109,8 @@ describe('hsl ui', function() {
 });
 
 describe('matka ui', function() {
-  it('http should redirect to https', function(done) {
-    get('opas.matka.fi','/kissa').end((err,res)=>{
-      expect(err.status).to.be.equal(301);
-      expect(err.response.header.location).to.be.equal('https://opas.matka.fi/kissa');
-      done();
-    });
-  });
+  testRedirect('opas.matka.fi','/kissa','https://opas.matka.fi/kissa');
+  testRedirect('beta.matka.fi','/kissa','https://beta.matka.fi/kissa');
 
   testProxying('beta.matka.fi','/','digitransit-ui-default:8080', true);
   testProxying('opas.matka.fi','/','digitransit-ui-default:8080', true);
