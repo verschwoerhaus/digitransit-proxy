@@ -26,3 +26,11 @@ Digitransit proxy
 --add-host digitransit-site:127.0.0.1 \
 -p 8080:8080 \
 hsldevcom/digitransit-proxy`
+
+
+# Running testsuite
+
+Requires docker + node
+
+`cd test
+test.sh`
