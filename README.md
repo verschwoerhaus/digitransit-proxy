@@ -29,8 +29,8 @@ hsldevcom/digitransit-proxy`
 
 
 # Running testsuite
-
 Requires docker + node
 
-`cd test
-test.sh`
+```bash
+cd tets
+test.sh
