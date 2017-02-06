@@ -32,5 +32,5 @@ hsldevcom/digitransit-proxy`
 Requires docker + node
 
 ```bash
-cd tets
+cd test
 test.sh
