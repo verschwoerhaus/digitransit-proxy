@@ -1,3 +1,7 @@
+#!/bin/bash
+set -e
+set -x
+
 cd ..
 docker build -t hsldevcom/digitransit-proxy:test .
 
