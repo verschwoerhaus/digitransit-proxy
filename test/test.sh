@@ -3,7 +3,7 @@ set -e
 set -x
 
 cd ..
-docker build -t hsldevcom/digitransit-proxy:test .
+docker build -t hsldevcom/digitransit-proxy:integrationtest .
 
 PROXIED_HOSTS=`grep proxy_pass *.conf|cut -d'/' -f3|cut -d':' -f1|uniq`
 
@@ -18,7 +18,7 @@ cd test
 
 npm install
 
-CONTAINER_ID=`docker run -d --rm -p 9000:8080 $ADDHOSTS hsldevcom/digitransit-proxy:test`
+CONTAINER_ID=`docker run -d -p 9000:8080 $ADDHOSTS hsldevcom/digitransit-proxy:integrationtest`
 
 echo started proxy-container $CONTAINER_ID
 echo starting echo server...
