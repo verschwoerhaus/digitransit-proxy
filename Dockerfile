@@ -11,6 +11,12 @@ ADD legacy-redirects.conf /etc/nginx/legacy-redirects.conf
 RUN rm /var/log/nginx/* && chmod -R a+rwX ${INSTALL_DIR} /etc/nginx/ /var/log/nginx/ /var/cache/nginx/ /var/run/
 #USER 9999
 
+#because we dont want to use disk on the containers for logs
+
+RUN ln -sf /dev/stdout /var/log/nginx/access.log
+RUN ln -sf /dev/stderr /var/log/nginx/error.log
+
+
 WORKDIR /etc/nginx
 EXPOSE 8080
 
