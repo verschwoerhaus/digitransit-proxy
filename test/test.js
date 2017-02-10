@@ -128,20 +128,14 @@ describe('matka ui', function() {
 });
 
 describe('waltti ui', function() {
-  testRedirect('dev-joensuu.digitransit.fi','/kissa','https://dev-joensuu.digitransit.fi/kissa');
-  testProxying('dev-joensuu.digitransit.fi','/','digitransit-ui-waltti:8080', true);
-  testRedirect('joensuu.digitransit.fi','/kissa','https://joensuu.digitransit.fi/kissa');
-  testProxying('joensuu.digitransit.fi','/','digitransit-ui-waltti:8080', true);
+  const cities = ['joensuu', 'turku', 'oulu', 'lappeenranta'];
 
-  testRedirect('dev-turku.digitransit.fi','/kissa','https://dev-turku.digitransit.fi/kissa');
-  testProxying('dev-turku.digitransit.fi','/','digitransit-ui-waltti:8080', true);
-  testRedirect('turku.digitransit.fi','/kissa','https://turku.digitransit.fi/kissa');
-  testProxying('turku.digitransit.fi','/','digitransit-ui-waltti:8080', true);
-
-  testRedirect('dev-oulu.digitransit.fi','/kissa','https://dev-oulu.digitransit.fi/kissa');
-  testProxying('dev-oulu.digitransit.fi','/','digitransit-ui-waltti:8080', true);
-  testRedirect('oulu.digitransit.fi','/kissa','https://oulu.digitransit.fi/kissa');
-  testProxying('oulu.digitransit.fi','/','digitransit-ui-waltti:8080', true);
+  cities.forEach(function(city) {
+    testRedirect('dev-'+city+'.digitransit.fi','/kissa','https://dev-'+city+'.digitransit.fi/kissa');
+    testProxying('dev-'+city+'.digitransit.fi','/','digitransit-ui-waltti:8080', true);
+    testRedirect(city+'.digitransit.fi','/kissa','https://'+city+'.digitransit.fi/kissa');
+    testProxying(city+'.digitransit.fi','/','digitransit-ui-waltti:8080', true);
+  });
 
   it('https should not redirect', function(done) {
     httpsGet('turku.digitransit.fi','/kissa').end((err,res)=>{
