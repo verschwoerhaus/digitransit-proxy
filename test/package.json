@@ -15,6 +15,10 @@
     "url": "https://github.com/HSLdevcom/digitransit-proxy/issues"
   },
   "homepage": "https://github.com/HSLdevcom/digitransit-proxy#readme",
+  "engines": {
+    "node": ">=5.0",
+    "npm": ">=3.0"
+  },
   "dependencies": {
   },
   "devDependencies": {
