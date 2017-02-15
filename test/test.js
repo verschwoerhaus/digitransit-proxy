@@ -128,7 +128,7 @@ describe('matka ui', function() {
 });
 
 describe('waltti ui', function() {
-  const cities = ['joensuu', 'turku', 'oulu', 'lappeenranta'];
+  const cities = ['hameenlinna', 'joensuu', 'kuopio', 'lappeenranta', 'oulu', 'turku'];
 
   cities.forEach(function(city) {
     testRedirect('dev-'+city+'.digitransit.fi','/kissa','https://dev-'+city+'.digitransit.fi/kissa');
