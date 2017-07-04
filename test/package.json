@@ -19,8 +19,7 @@
     "node": ">=5.0",
     "npm": ">=3.0"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "mocha": "^3.2.0",
     "chai-http": "^3.0.0",

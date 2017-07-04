@@ -5,5 +5,4 @@ Digitransit proxy
 Requires docker + node
 
 ```bash
-cd test
-test.sh
+test/test.sh
