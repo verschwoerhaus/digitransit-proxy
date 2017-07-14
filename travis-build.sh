@@ -10,7 +10,7 @@ test/test.sh
 
 ORG=${ORG:-hsldevcom}
 DOCKER_TAG=${TRAVIS_BUILD_ID:-latest}
-DOCKER_IMAGE=digitransit-proxy:$DOCKER_TAG
+DOCKER_IMAGE=$ORG/digitransit-proxy:$DOCKER_TAG
 LATEST_IMAGE=$ORG/digitransit-proxy:latest
 PROD_IMAGE=$ORG/digitransit-proxy:prod
 
