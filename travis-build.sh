@@ -14,7 +14,7 @@ DOCKER_IMAGE=digitransit-proxy:$DOCKER_TAG
 LATEST_IMAGE=$ORG/digitransit-proxy:latest
 PROD_IMAGE=$ORG/digitransit-proxy:prod
 
-cho Building digitransit-proxy: $DOCKER_IMAGE
+echo Building digitransit-proxy: $DOCKER_IMAGE
 
 docker build  --tag=$DOCKER_IMAGE -f Dockerfile .
 
