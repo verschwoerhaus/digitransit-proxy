@@ -6,9 +6,7 @@
 
 set -o errexit -o nounset -o xtrace
 
-cd test
-./test.sh
-cd ..
+test/test.sh
 
 ORG=${ORG:-hsldevcom}
 DOCKER_TAG=${TRAVIS_BUILD_ID:-latest}
