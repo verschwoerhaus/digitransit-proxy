@@ -21,7 +21,7 @@ if [ "${TRAVIS_PULL_REQUEST}" == "false" ]; then
   if [ "$TRAVIS_TAG" ];then
     echo "processing release $TRAVIS_TAG"
     #release do not rebuild, just tag
-    docker pull $ORG/$DOCKER_IMAGE
+    docker pull $DOCKER_IMAGE
     docker tag ${DOCKER_IMAGE} ${PROD_IMAGE}
     docker push ${PROD_IMAGE}
   else
