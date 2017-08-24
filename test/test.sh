@@ -1,6 +1,5 @@
 #!/bin/bash
-set -e
-set -x
+set +e
 
 docker build -t hsldevcom/digitransit-proxy:integrationtest .
 
@@ -29,7 +28,7 @@ PID=$!
 npm test
 STATUS=$?
 
-echo stopping test server
+echo "stopping test server (pid:$PID)"
 kill -9 $PID
 echo stopping proxy-container $CONTAINER_ID
 docker stop $CONTAINER_ID
