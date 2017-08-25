@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/ash
 
 #workaround for azure DNS issue
 
