@@ -103,13 +103,21 @@ describe('api.digitransit.fi', function() {
   testCaching('api.digitransit.fi','/geocoding/v1/foo', true);
   testProxying('api.digitransit.fi','/graphiql/hsl','graphiql:8080');
   testProxying('api.digitransit.fi','/realtime/siri2gtfsrt/v1/','siri2gtfsrt:8080');
+  testCaching('api.digitransit.fi','/realtime/siri2gtfsrt/v1/foo', false)
   testProxying('api.digitransit.fi','/realtime/trip-updates/v1/','siri2gtfsrt:8080');
+  testCaching('api.digitransit.fi','/realtime/trip-updates/v1/foo', false)
   testProxying('api.digitransit.fi','/realtime/hslalert/v1/','hslalert:8080');
+  testCaching('api.digitransit.fi','/realtime/hslalert/v1/foo', false);
   testProxying('api.digitransit.fi','/realtime/service-alerts/v1/','hslalert:8080');
+  testCaching('api.digitransit.fi','/realtime/service-alerts/v1/foo',false);
   testProxying('api.digitransit.fi','/realtime/navigator-server/v1/','navigator-server:8080');
+  testCaching('api.digitransit.fi','/realtime/navigator-server/v1/foo',false);
   testProxying('api.digitransit.fi','/realtime/vehicle-positions/v1/','navigator-server:8080');
+  testCaching('api.digitransit.fi','/realtime/vehicle-positions/v1/foo',false);
   testProxying('api.digitransit.fi','/realtime/mqtt-cache/v1/','navigator-server:8080');
+  testCaching('api.digitransit.fi','/realtime/mqtt-cache/v1/foo',false);
   testProxying('api.digitransit.fi','/realtime/raildigitraffic2gtfsrt/v1/','raildigitraffic2gtfsrt:8080');
+  testCaching('api.digitransit.fi','/realtime/raildigitraffic2gtfsrt/v1/foo',true);
   testProxying('api.digitransit.fi','/map/v1/','hsl-map-server:8080');
   testProxying('api.digitransit.fi','/routing/v1/routers/finland','opentripplanner-finland:8080');
   testProxying('api.digitransit.fi','/routing/v1/routers/hsl','opentripplanner-hsl:8080');
