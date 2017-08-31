@@ -49,6 +49,28 @@ function testProxying(host, path, proxyTo, secure) {
   });
 }
 
+function testCaching(host, path, secure) {
+  it(host + path + ' should be proxied and cached', function(done) {
+    const verifyCacheMiss = (res) => {
+      expect(res.headers['x-proxy-cache']).to.be.equal('MISS');
+    }
+
+    const verifyCacheHit = (res) => {
+      expect(res.headers['x-proxy-cache']).to.be.equal('HIT');
+    }
+
+    let fn = secure?httpsGet:get;
+
+    fn(host, path)
+      .then(verifyCacheMiss)
+      .then(()=>{
+        return fn(host, path).then(verifyCacheHit);
+      })
+      .then(done)
+      .catch((e)=>{done(e)})
+  });
+}
+
 function testRedirect(host, path, expectedUrl) {
   it('http request to ' + host + path + ' should redirect to ' + expectedUrl, function(done) {
     get(host,path).end((err,res)=>{
@@ -78,15 +100,24 @@ describe('api.digitransit.fi', function() {
   });
 
   testProxying('api.digitransit.fi','/geocoding/v1/','pelias-api:8080');
+  testCaching('api.digitransit.fi','/geocoding/v1/foo', true);
   testProxying('api.digitransit.fi','/graphiql/hsl','graphiql:8080');
   testProxying('api.digitransit.fi','/realtime/siri2gtfsrt/v1/','siri2gtfsrt:8080');
+  testCaching('api.digitransit.fi','/realtime/siri2gtfsrt/v1/foo', false)
   testProxying('api.digitransit.fi','/realtime/trip-updates/v1/','siri2gtfsrt:8080');
+  testCaching('api.digitransit.fi','/realtime/trip-updates/v1/foo', false)
   testProxying('api.digitransit.fi','/realtime/hslalert/v1/','hslalert:8080');
+  testCaching('api.digitransit.fi','/realtime/hslalert/v1/foo', false);
   testProxying('api.digitransit.fi','/realtime/service-alerts/v1/','hslalert:8080');
+  testCaching('api.digitransit.fi','/realtime/service-alerts/v1/foo',false);
   testProxying('api.digitransit.fi','/realtime/navigator-server/v1/','navigator-server:8080');
+  testCaching('api.digitransit.fi','/realtime/navigator-server/v1/foo',false);
   testProxying('api.digitransit.fi','/realtime/vehicle-positions/v1/','navigator-server:8080');
+  testCaching('api.digitransit.fi','/realtime/vehicle-positions/v1/foo',false);
   testProxying('api.digitransit.fi','/realtime/mqtt-cache/v1/','navigator-server:8080');
+  testCaching('api.digitransit.fi','/realtime/mqtt-cache/v1/foo',false);
   testProxying('api.digitransit.fi','/realtime/raildigitraffic2gtfsrt/v1/','raildigitraffic2gtfsrt:8080');
+  testCaching('api.digitransit.fi','/realtime/raildigitraffic2gtfsrt/v1/foo',true);
   testProxying('api.digitransit.fi','/map/v1/','hsl-map-server:8080');
   testProxying('api.digitransit.fi','/routing/v1/routers/finland','opentripplanner-finland:8080');
   testProxying('api.digitransit.fi','/routing/v1/routers/hsl','opentripplanner-hsl:8080');
@@ -131,7 +162,7 @@ describe('matka ui', function() {
 });
 
 describe('waltti ui', function() {
-  const cities =  ['hameenlinna', 'jyvaskyla', 'joensuu', 'kotka', 'kuopio', 'lahti', 'lappeenranta', 'oulu', 'turku'];
+  const cities = ['hameenlinna', 'jyvaskyla', 'joensuu', 'kotka', 'kuopio', 'lahti', 'lappeenranta', 'oulu', 'turku'];
 
   cities.forEach(function(city) {
     testRedirect('dev-'+city+'.digitransit.fi','/kissa','https://dev-'+city+'.digitransit.fi/kissa');
@@ -148,8 +179,13 @@ describe('waltti ui', function() {
   });
 });
 
-
-
 describe('digitransit', function() {
   testRedirect('www.digitransit.com','/kissa','http://digitransit.fi/kissa');
+});
+
+describe('ext-proxy', function() {
+    testCaching('api.digitransit.fi','/out/helsinki-fi.smoove.pro/api-public/stations',false);
+    testCaching('api.digitransit.fi','/out/p.hsl.fi/api/v1/facilities.json?limit=-1',false);
+    testCaching('api.digitransit.fi','/out/92.62.36.215/RTIX/trip-updates',false);
+    testCaching('api.digitransit.fi','/out/beta.liikennevirasto.fi/joukkoliikenne/manual_gtfsrt/api/gtfsrt/alerts',false);
 });
