@@ -142,6 +142,11 @@ describe('hsl ui', function() {
 
   testProxying('beta.reittiopas.fi','/','digitransit-ui-hsl:8080', true);
   testProxying('dev.reittiopas.fi','/','digitransit-ui-hsl:8080', true);
+
+  //next-dev site
+  testRedirect('www.reittiopas-next.dev.digitransit.fi','/kissa','http://reittiopas-next.dev.digitransit.fi/kissa');
+  testRedirect('reittiopas-next.dev.digitransit.fi','/kissa','https://reittiopas-next.dev.digitransit.fi/kissa');
+  testProxying('reittiopas-next.dev.digitransit.fi','/','digitransit-ui-hsl-next:8080', true);
 });
 
 describe('matka ui', function() {
@@ -184,8 +189,9 @@ describe('digitransit', function() {
 });
 
 describe('ext-proxy', function() {
-    testCaching('api.digitransit.fi','/out/helsinki-fi.smoove.pro/api-public/stations',false);
-    testCaching('api.digitransit.fi','/out/p.hsl.fi/api/v1/facilities.json?limit=-1',false);
-    testCaching('api.digitransit.fi','/out/92.62.36.215/RTIX/trip-updates',false);
-    testCaching('api.digitransit.fi','/out/beta.liikennevirasto.fi/joukkoliikenne/manual_gtfsrt/api/gtfsrt/alerts',false);
+  this.timeout(5000);
+  testCaching('api.digitransit.fi','/out/helsinki-fi.smoove.pro/api-public/stations',false);
+  testCaching('api.digitransit.fi','/out/p.hsl.fi/api/v1/facilities.json?limit=-1',false);
+  testCaching('api.digitransit.fi','/out/92.62.36.215/RTIX/trip-updates',false);
+  testCaching('api.digitransit.fi','/out/beta.liikennevirasto.fi/joukkoliikenne/manual_gtfsrt/api/gtfsrt/alerts',false);
 });
