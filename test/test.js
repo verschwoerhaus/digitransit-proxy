@@ -176,6 +176,12 @@ describe('waltti ui', function() {
     testProxying(city+'.digitransit.fi','/','digitransit-ui-waltti:8080', true);
   });
 
+  testRedirect('reittiopas.foli.fi','/kissa','https://reittiopas.foli.fi/kissa');
+  testProxying('reittiopas.foli.fi','/','digitransit-ui-waltti:8080', true);
+
+  testRedirect('reittiopas.hameenlinna.fi','/kissa','https://reittiopas.hameenlinna.fi/kissa');
+  testProxying('reittiopas.hameenlinna.fi','/','digitransit-ui-waltti:8080', true);
+
   it('https should not redirect', function(done) {
     httpsGet('turku.digitransit.fi','/kissa').end((err,res)=>{
       expect(err).to.be.null;
