@@ -7,6 +7,8 @@ branches:
 services: docker
 install: true
 
-language: C
+language: node_js
+node_js:
+    - "8.10"
 
 script: ./travis-build.sh
