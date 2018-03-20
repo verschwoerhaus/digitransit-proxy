@@ -34,6 +34,7 @@ if [ "${TRAVIS_PULL_REQUEST}" == "false" ]; then
   fi
 else
   echo "processing pr $TRAVIS_PULL_REQUEST"
+  node -v
   test/test.sh
   docker build  --tag=$DOCKER_IMAGE -f Dockerfile .
 fi
