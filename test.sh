@@ -21,6 +21,8 @@ echo starting echo server...
 node test_server.js &
 PID=$!
 
+sleep 5
+
 npm test
 STATUS=$?
 
