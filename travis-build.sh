@@ -12,9 +12,6 @@ DOCKER_IMAGE=$ORG/digitransit-proxy:$DOCKER_TAG
 LATEST_IMAGE=$ORG/digitransit-proxy:latest
 PROD_IMAGE=$ORG/digitransit-proxy:prod
 
-echo Building digitransit-proxy: $DOCKER_IMAGE
-
-docker build  --tag=$DOCKER_IMAGE -f Dockerfile .
 
 if [ "${TRAVIS_PULL_REQUEST}" == "false" ]; then
   docker login -u ${DOCKER_USER} -p ${DOCKER_AUTH}
@@ -26,7 +23,7 @@ if [ "${TRAVIS_PULL_REQUEST}" == "false" ]; then
     docker push ${PROD_IMAGE}
   else
     echo "processing master build $TRAVIS_COMMIT"
-    test/test.sh
+    ./test.sh
     docker build  --tag=$DOCKER_IMAGE -f Dockerfile .
     docker push ${DOCKER_IMAGE}
     docker tag ${DOCKER_IMAGE} ${LATEST_IMAGE}
@@ -34,8 +31,7 @@ if [ "${TRAVIS_PULL_REQUEST}" == "false" ]; then
   fi
 else
   echo "processing pr $TRAVIS_PULL_REQUEST"
-  node -v
-  test/test.sh
+  ./test.sh
   docker build  --tag=$DOCKER_IMAGE -f Dockerfile .
 fi
 

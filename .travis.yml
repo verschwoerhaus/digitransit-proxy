@@ -5,14 +5,10 @@ branches:
     - /201[7-9][0-1][0-9][0-3][0-9]/
 
 services: docker
-install: true
 
-env:
-  - NODE_VERSION="8.10"
+install:
+ - npm install
 
-before_install:
-  - nvm install $NODE_VERSION
-
-language: C
+language: node_js
 
 script: ./travis-build.sh

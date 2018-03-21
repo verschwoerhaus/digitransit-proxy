@@ -6,4 +6,4 @@
 Requires docker + node
 
 ```bash
-test/test.sh
+./test.sh
