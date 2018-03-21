@@ -5,10 +5,9 @@ branches:
     - /201[7-9][0-1][0-9][0-3][0-9]/
 
 services: docker
-install: true
+install:
+  -npm install
 
 language: node_js
-node_js:
-    - "8.10"
 
 script: ./travis-build.sh
