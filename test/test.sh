@@ -17,6 +17,9 @@ echo $ADDHOSTS
 cd test
 
 npm install
+npm install -g forever
+forever start server.js
+sleep 5
 
 CONTAINER_ID=`docker run -d -p 9000:8080 $ADDHOSTS hsldevcom/digitransit-proxy:integrationtest`
 
