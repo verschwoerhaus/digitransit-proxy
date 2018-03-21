@@ -5,8 +5,9 @@ branches:
     - /201[7-9][0-1][0-9][0-3][0-9]/
 
 services: docker
+
 install:
-  -npm install
+  - npm install
 
 language: node_js
 

@@ -14,15 +14,11 @@ for HOST in $PROXIED_HOSTS;do ADDHOSTS="--add-host $HOST:$TARGETHOST $ADDHOSTS";
 
 echo $ADDHOSTS
 
-cd test
-
-npm install
-
 CONTAINER_ID=`docker run -d -p 9000:8080 $ADDHOSTS hsldevcom/digitransit-proxy:integrationtest`
 
 echo started proxy-container $CONTAINER_ID
 echo starting echo server...
-node server.js &
+node test_server.js &
 PID=$!
 
 npm test
