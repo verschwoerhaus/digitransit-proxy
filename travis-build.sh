@@ -23,7 +23,7 @@ if [ "${TRAVIS_PULL_REQUEST}" == "false" ]; then
     docker push ${PROD_IMAGE}
   else
     echo "processing master build $TRAVIS_COMMIT"
-    test.sh
+    ./test.sh
     docker build  --tag=$DOCKER_IMAGE -f Dockerfile .
     docker push ${DOCKER_IMAGE}
     docker tag ${DOCKER_IMAGE} ${LATEST_IMAGE}
@@ -31,7 +31,7 @@ if [ "${TRAVIS_PULL_REQUEST}" == "false" ]; then
   fi
 else
   echo "processing pr $TRAVIS_PULL_REQUEST"
-  test.sh
+  ./test.sh
   docker build  --tag=$DOCKER_IMAGE -f Dockerfile .
 fi
 
