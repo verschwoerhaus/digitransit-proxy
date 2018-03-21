@@ -6,7 +6,8 @@ branches:
 
 services: docker
 
-install: true
+install:
+ - npm install
 
 language: node_js
 
