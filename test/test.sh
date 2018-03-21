@@ -1,6 +1,6 @@
 #!/bin/bash
 set +e
-set -x
+#set -x
 docker build -t hsldevcom/digitransit-proxy:integrationtest .
 
 PROXIED_HOSTS=`grep proxy_pass *.conf|cut -d'/' -f3|cut -d':' -f1|grep -v "\."|uniq`
@@ -17,6 +17,8 @@ echo $ADDHOSTS
 cd test
 
 npm install
+npm install forever
+
 
 CONTAINER_ID=`docker run -d -p 9000:8080 $ADDHOSTS hsldevcom/digitransit-proxy:integrationtest`
 
@@ -25,14 +27,15 @@ curl -v http://127.0.0.1:9000
 
 echo started proxy-container $CONTAINER_ID
 echo starting echo server...
-node server.js &
-PID=$!
+#node server.js &
+#PID=$!
+
+forever start server.js
+sleep 5
 
 npm test
 STATUS=$?
 
-echo "stopping test server (pid:$PID)"
-kill -9 $PID
 echo stopping proxy-container $CONTAINER_ID
 docker stop $CONTAINER_ID
 
