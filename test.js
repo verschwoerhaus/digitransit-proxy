@@ -201,6 +201,7 @@ describe('digitransit', function() {
 describe('ext-proxy', function() {
   this.timeout(5000);
   testCaching('api.digitransit.fi','/out/helsinki-fi.smoove.pro/api-public/stations',false);
+  testCaching('api.digitransit.fi','/out/data.foli.fi/citybike/smoove',false);
   testCaching('api.digitransit.fi','/out/p.hsl.fi/api/v1/facilities.json?limit=-1',false);
   testCaching('api.digitransit.fi','/out/92.62.36.215/RTIX/trip-updates',false);
   testCaching('api.digitransit.fi','/out/beta.liikennevirasto.fi/joukkoliikenne/manual_gtfsrt/api/gtfsrt/alerts',false);
