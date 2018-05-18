@@ -156,10 +156,7 @@ describe('hsl ui', function() {
 describe('matka ui', function() {
   testRedirect('www.opas.matka.fi','/kissa','http://opas.matka.fi/kissa');
   testRedirect('opas.matka.fi','/kissa','https://opas.matka.fi/kissa');
-  testRedirect('www.beta.matka.fi','/kissa','http://beta.matka.fi/kissa');
-  testRedirect('beta.matka.fi','/kissa','https://beta.matka.fi/kissa');
 
-  testProxying('beta.matka.fi','/','digitransit-ui-default:8080', true);
   testProxying('opas.matka.fi','/','digitransit-ui-default:8080', true);
 
   it('https should not redirect', function(done) {
@@ -169,6 +166,11 @@ describe('matka ui', function() {
     });
   });
 });
+
+describe('old matka domain', function() {
+  testRedirect('www.beta.matka.fi','/kissa','https://www.liikennevirasto.fi/uutinen/-/asset_publisher/SHHdKcU2jahL/content/matka-fi-osoite-muuttuu');
+  testRedirect('beta.matka.fi','/kissa','https://www.liikennevirasto.fi/uutinen/-/asset_publisher/SHHdKcU2jahL/content/matka-fi-osoite-muuttuu');
+})
 
 describe('waltti ui', function() {
   const cities = ['hameenlinna', 'jyvaskyla', 'joensuu', 'kotka', 'kuopio', 'lahti',
