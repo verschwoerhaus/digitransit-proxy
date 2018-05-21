@@ -167,11 +167,6 @@ describe('matka ui', function() {
   });
 });
 
-describe('old matka domain', function() {
-  testRedirect('www.beta.matka.fi','/kissa','https://www.liikennevirasto.fi/uutinen/-/asset_publisher/SHHdKcU2jahL/content/matka-fi-osoite-muuttuu');
-  testRedirect('beta.matka.fi','/kissa','https://www.liikennevirasto.fi/uutinen/-/asset_publisher/SHHdKcU2jahL/content/matka-fi-osoite-muuttuu');
-})
-
 describe('waltti ui', function() {
   const cities = ['hameenlinna', 'jyvaskyla', 'joensuu', 'kotka', 'kuopio', 'lahti',
                   'lappeenranta', 'mikkeli', 'oulu', 'turku', 'tampere', 'kouvola'];
