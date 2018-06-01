@@ -26,7 +26,7 @@ PID=$!
 
 sleep 5
 
-npm test
+mocha
 STATUS=$?
 
 echo stopping proxy-container $CONTAINER_ID
