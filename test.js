@@ -82,7 +82,7 @@ function testRedirect(host, path, expectedUrl) {
 }
 
 function testResponseHeader(host, path, header, headerValue) {
-  it('http request to ' + host + path + ' should have response header: ' + header + " should have value: " + value, function(done) {
+  it('http request to ' + host + path + ' should have response header: ' + header + ' should have value: ' + value, function(done) {
     get(host,path).end((err,res)=>{
       expect(res.headers[header]).to.be.equal(headerValue);
       done();
