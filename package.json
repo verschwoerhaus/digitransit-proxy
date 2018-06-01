@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Digitransit proxy test suite",
   "scripts": {
-    "test": "mocha"
+    "test": "./test.sh"
   },
   "repository": {
     "type": "git",
