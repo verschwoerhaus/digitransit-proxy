@@ -32,4 +32,6 @@ STATUS=$?
 echo stopping proxy-container $CONTAINER_ID
 docker stop $CONTAINER_ID
 
+kill -9 $PID
+
 exit $STATUS
