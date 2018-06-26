@@ -207,6 +207,11 @@ describe('waltti ui', function() {
   });
 });
 
+describe('osmtracker', function() {
+  testRedirect('osmtracker.digitransit.fi','/kissa','https://osmtracker.digitransit.fi/kissa');
+  testProxying('osmtracker.digitransit.fi','/','osmtracker:8080', true);
+});
+
 describe('digitransit', function() {
   testRedirect('www.digitransit.com','/kissa','http://digitransit.fi/kissa');
 });
