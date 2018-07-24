@@ -3,7 +3,7 @@ set +e
 #set -x
 docker build -t hsldevcom/digitransit-proxy:integrationtest .
 
-PROXIED_HOSTS=`grep proxy_pass *.conf|cut -d'/' -f3|cut -d':' -f1|grep -v "\."|uniq`
+PROXIED_HOSTS=`grep proxy_pass *.conf|cut -d'/' -f3|cut -d':' -f1|grep -v "\."|sort|uniq`
 
 TARGETHOST=`/sbin/ifconfig|grep inet|grep -v inet6|grep -v 127.0.0.1|grep -oE "([0-9.])+"|head -1`
 
@@ -31,6 +31,7 @@ STATUS=$?
 
 echo stopping proxy-container $CONTAINER_ID
 docker stop $CONTAINER_ID
+docker rm $CONTAINER_ID
 
 kill -9 $PID
 
