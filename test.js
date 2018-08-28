@@ -200,6 +200,10 @@ describe('waltti ui', function() {
   testRedirect('pilottirepa.tampere.fi','/kissa','https://pilottirepa.tampere.fi/kissa');
   testProxying('pilottirepa.tampere.fi','/','digitransit-ui-waltti:8080', true);
 
+  describe('sentry-analytics', function() {
+    testProxying('sentry-analytics.digitransit.fi','/','digitransit-sentry-analytics:8080', true);
+  });
+
   it('https should not redirect', function(done) {
     httpsGet('turku.digitransit.fi','/kissa').end((err,res)=>{
       expect(err).to.be.null;
@@ -210,6 +214,7 @@ describe('waltti ui', function() {
 
 describe('digitransit', function() {
   testRedirect('www.digitransit.com','/kissa','http://digitransit.fi/kissa');
+  testProxying('digitransit.fi','/','digitransit-site:8080', true);
 });
 
 describe('ext-proxy', function() {
