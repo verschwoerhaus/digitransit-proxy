@@ -233,4 +233,10 @@ describe('ext-proxy', function() {
   testCaching('api.digitransit.fi','/out/p.hsl.fi/api/v1/facilities.json?limit=-1',false);
   testCaching('api.digitransit.fi','/out/92.62.36.215/RTIX/trip-updates',false);
   testCaching('api.digitransit.fi','/out/beta.liikennevirasto.fi/joukkoliikenne/manual_gtfsrt/api/gtfsrt/alerts',false);
+  testCaching('api.digitransit.fi','/out/vilkku.mattersoft.fi/api/gtfsrealtime/v1.0/feed/tripupdate',false);
+  testCaching('api.digitransit.fi','/out/lappeenranta.mattersoft.fi/api/gtfsrealtime/v1.0/feed/tripupdate',false);
+  testCaching('api.digitransit.fi','/out/linkki.mattersoft.fi/api/gtfsrealtime/v1.0/feed/tripupdate',false);
+  testCaching('api.digitransit.fi','/out/pilottilissu.tampere.fi/api/gtfsrealtime/v1.0/feed/tripupdate',false);
+  testCaching('api.digitransit.fi','/out/jojo.mattersoft.fi/api/gtfsrealtime/v1.0/feed/tripupdate',false);
+  testCaching('api.digitransit.fi','/out/foli-beta.nanona.fi/gtfs-rt',false);
 });
