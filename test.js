@@ -71,11 +71,12 @@ function testCaching(host, path, secure) {
   });
 }
 
-function testRedirect(host, path, expectedUrl) {
-  it('http request to ' + host + path + ' should redirect to ' + expectedUrl, function(done) {
-    get(host,path).end((err,res)=>{
-      expect(err.status).to.be.equal(301);
-      expect(err.response.header.location).to.be.equal(expectedUrl);
+function testRedirect(host, path, expectedUrl, secure=false) {
+  let fn = secure?httpsGet:get;
+  it('request to ' + host + path + ' should redirect to ' + expectedUrl, function(done) {
+    fn(host,path).end((err,res)=>{
+      expect(res).to.redirect;
+      expect(res).to.redirectTo(expectedUrl);
       done();
     });
   });
@@ -154,7 +155,9 @@ describe('api.digitransit.fi', function() {
 describe('hsl ui', function() {
   testRedirect('www.beta.reittiopas.fi','/kissa','http://beta.reittiopas.fi/kissa');
 
-  testRedirect('beta.reittiopas.fi','/kissa','https://beta.reittiopas.fi/kissa');
+  testRedirect('beta.reittiopas.fi','/kissa','https://reittiopas.hsl.fi/kissa', true);
+  testRedirect('www.reittiopas.fi','/kissa','https://reittiopas.hsl.fi/kissa', true);
+  testRedirect('m.reittiopas.fi','/kissa','https://reittiopas.hsl.fi/kissa');
   testRedirect('dev.reittiopas.fi','/kissa','https://dev.reittiopas.fi/kissa');
 
   it('https should not redirect', function(done) {
@@ -164,7 +167,6 @@ describe('hsl ui', function() {
     });
   });
 
-  testProxying('beta.reittiopas.fi','/','digitransit-ui-hsl:8080', true);
   testProxying('dev.reittiopas.fi','/','digitransit-ui-hsl:8080', true);
 
   testProxying('reittiopas.hsl.fi','/','digitransit-ui-hsl:8080', true);
