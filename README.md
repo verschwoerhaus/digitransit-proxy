@@ -6,4 +6,4 @@
 Requires docker + node
 
 ```bash
-./test.sh
+npm run test
