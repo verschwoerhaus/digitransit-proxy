@@ -155,6 +155,7 @@ describe('api.digitransit.fi', function() {
 describe('hsl ui', function() {
   testRedirect('www.beta.reittiopas.fi','/kissa','http://beta.reittiopas.fi/kissa');
 
+  testRedirect('reittiopas.fi','/kissa','https://reittiopas.hsl.fi/kissa');
   testRedirect('beta.reittiopas.fi','/kissa','https://reittiopas.hsl.fi/kissa', true);
   testRedirect('www.reittiopas.fi','/kissa','https://reittiopas.hsl.fi/kissa', true);
   testRedirect('m.reittiopas.fi','/kissa','https://reittiopas.hsl.fi/kissa');
