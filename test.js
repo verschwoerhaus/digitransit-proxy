@@ -161,6 +161,11 @@ describe('hsl ui', function() {
   testRedirect('m.reittiopas.fi','/kissa','https://reittiopas.hsl.fi/kissa');
   testRedirect('dev.reittiopas.fi','/kissa','https://dev.reittiopas.fi/kissa');
 
+  testRedirect('reittiopas.fi','/','https://www.hsl.fi');
+  testRedirect('beta.reittiopas.fi','/','https://www.hsl.fi', true);
+  testRedirect('www.reittiopas.fi','/','https://www.hsl.fi', true);
+  testRedirect('m.reittiopas.fi','/','https://www.hsl.fi');
+
   it('https should not redirect', function(done) {
     httpsGet('beta.digitransit.fi','/kissa').end((err,res)=>{
       expect(err).to.be.null;
