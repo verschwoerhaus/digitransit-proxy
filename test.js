@@ -212,6 +212,12 @@ describe('waltti ui', function() {
   testRedirect('pilottirepa.tampere.fi','/kissa','https://pilottirepa.tampere.fi/kissa');
   testProxying('pilottirepa.tampere.fi','/','digitransit-ui-waltti:8080', true);
 
+  testRedirect('repa.tampere.fi','/kissa','https://repa.tampere.fi/kissa');
+  testProxying('repa.tampere.fi','/','digitransit-ui-waltti:8080', true);
+
+  testRedirect('reittiopas.tampere.fi','/kissa','https://reittiopas.tampere.fi/kissa');
+  testProxying('reittiopas.tampere.fi','/','digitransit-ui-waltti:8080', true);
+
   describe('sentry-analytics', function() {
     testProxying('sentry-analytics.digitransit.fi','/','digitransit-sentry-analytics:8080', true);
   });
