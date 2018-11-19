@@ -172,10 +172,13 @@ describe('hsl ui', function() {
 
   testProxying('reittiopas.hsl.fi','/','digitransit-ui-hsl:8080', true);
 
+  testCaching('reittiopas.hsl.fi','/sw.js', true);
+
   //next-dev site
   testRedirect('www.next-dev.digitransit.fi','/kissa','http://next-dev.digitransit.fi/kissa');
   testRedirect('next-dev.digitransit.fi','/kissa','https://next-dev.digitransit.fi/kissa');
   testProxying('next-dev.digitransit.fi','/','digitransit-ui-hsl-next:8080', true);
+  testCaching('next-dev.digitransit.fi','/sw.js', true);
 });
 
 describe('matka ui', function() {
@@ -183,6 +186,8 @@ describe('matka ui', function() {
   testRedirect('opas.matka.fi','/kissa','https://opas.matka.fi/kissa');
 
   testProxying('opas.matka.fi','/','digitransit-ui-default:8080', true);
+
+  testCaching('opas.matka.fi','/sw.js', true);
 
   it('https should not redirect', function(done) {
     httpsGet('opas.matka.fi','/kissa').end((err,res)=>{
@@ -217,6 +222,7 @@ describe('waltti ui', function() {
 
   testRedirect('reittiopas.tampere.fi','/kissa','https://reittiopas.tampere.fi/kissa');
   testProxying('reittiopas.tampere.fi','/','digitransit-ui-waltti:8080', true);
+  testCaching('reittiopas.tampere.fi','/sw.js', true);
 
   describe('sentry-analytics', function() {
     testProxying('sentry-analytics.digitransit.fi','/','digitransit-sentry-analytics:8080', true);
