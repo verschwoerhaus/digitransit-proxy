@@ -150,5 +150,5 @@ location /out/pilottilissu.tampere.fi/ {
   add_header X-Proxy-Cache $upstream_cache_status;
   proxy_ignore_headers X-Accel-Expires Expires Cache-Control Set-Cookie;
   proxy_cache_use_stale error timeout http_500 http_502 http_503 http_504;
-  proxy_set_header Authorization "Basic ZGlnaXRyYW5zaXQ6MjM0c2RsZTk=";
+  proxy_set_header Authorization ${LISSU_BASIC_AUTH};
 }

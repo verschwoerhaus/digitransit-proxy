@@ -8,6 +8,7 @@ RUN mkdir -p $INSTALL_DIR /opt/nginx/www /opt/nginx/cache /opt/nginx/geocache /o
 
 ADD index.html /opt/nginx/www/
 ADD *.conf /etc/nginx/
+ADD *.tmpl /etc/nginx/
 
 RUN rm /var/log/nginx/* && chmod -R a+rwX ${INSTALL_DIR} /etc/nginx/ /var/log/nginx/ /var/cache/nginx/ /var/run/
 
