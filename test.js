@@ -175,6 +175,7 @@ describe('hsl ui', function() {
   testCaching('reittiopas.hsl.fi','/sw.js', true);
 
   testRedirect('reittiopas.hsl.fi','/uudetvyohykkeet','https://vyohykereittiopas.hsl.fi', true);
+  testRedirect('reittiopas.hsl.fi','/uudetvyöhykkeet','https://vyohykereittiopas.hsl.fi', true);
 
   //next-dev site
   testRedirect('www.next-dev.digitransit.fi','/kissa','http://next-dev.digitransit.fi/kissa');
