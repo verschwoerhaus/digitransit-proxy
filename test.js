@@ -182,6 +182,9 @@ describe('hsl ui', function() {
   testRedirect('next-dev.digitransit.fi','/kissa','https://next-dev.digitransit.fi/kissa');
   testProxying('next-dev.digitransit.fi','/','digitransit-ui-hsl-next:8080', true);
   testCaching('next-dev.digitransit.fi','/sw.js', true);
+
+  testRedirect('vyohykereittiopas.hsl.fi','/kissa','https://vyohykereittiopas.hsl.fi/kissa');
+  testProxying('vyohykereittiopas.hsl.fi','/','digitransit-ui-hsl-next:8080', true);
 });
 
 describe('matka ui', function() {
