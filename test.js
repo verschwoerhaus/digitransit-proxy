@@ -254,7 +254,7 @@ describe('ext-proxy', function() {
   testCaching('api.digitransit.fi','/out/p.hsl.fi/api/v1/facilities.json?limit=-1',false);
   testCaching('api.digitransit.fi','/out/92.62.36.215/RTIX/trip-updates',false);
   testCaching('api.digitransit.fi','/out/beta.liikennevirasto.fi/joukkoliikenne/manual_gtfsrt/api/gtfsrt/alerts',false);
-
+  this.timeout(10000);
   testCaching('api.digitransit.fi','/realtime/trip-updates/v2/hsl',false);
   testCaching('api.digitransit.fi','/realtime/service-alerts/v2/hsl',false);
 });
